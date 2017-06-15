@@ -20,13 +20,19 @@ export const PostReducer = (state = initialState, action) => {
                 posts: action.payload.data
             };
         case 'DELETE_POST':
+            let newPosts = Object.assign([], state.posts);
 
-            // TODO Delete the post
-            console.log(action);
+            newPosts.map((post, index) => {
+                if (post.id === action.payload) {
+                    newPosts.splice(index, 1);
+                }
+            });
+
+            localStorage.setItem('posts', JSON.stringify(newPosts));
 
             return {
                 ...state,
-                posts: state.posts
+                posts: newPosts
             };
         default:
             return state;

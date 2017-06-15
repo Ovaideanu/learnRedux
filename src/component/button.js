@@ -1,11 +1,13 @@
 import React from 'react';
 
 export const Button = (props) => {
+    let visibility = props.localPosts === false ? " hidden" : "";
+
     return (
         <button
-            className={ props.localPosts ? "btn btn-info" : "btn btn-info hidden"}
-            onClick={() => props.getPosts()}>
-            Load posts
+            className={ props.cssClass + visibility}
+            onClick={() => props.action()}>
+            {props.text}
         </button>
     )
 }

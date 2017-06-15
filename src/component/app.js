@@ -1,6 +1,6 @@
 import React from 'react';
 import { bindActionCreators } from 'redux';
-import { getPosts, getLocalPosts, deletePost} from '../actions/actions';
+import { getPosts, getLocalPosts, deletePost, openAddPostModal} from '../actions/actions';
 import { connect } from 'react-redux';
 
 import { Post } from './post';
@@ -27,8 +27,17 @@ class Main extends React.Component {
                             <h1>Blog</h1>
                         </div>
                         <div className="col-xs-6 text-right get-posts">
-                            <Button localPosts={localPosts} getPosts={this.props.getLocalPosts}/>
-                            <Button localPosts={!localPosts} getPosts={this.props.getPosts}/>
+                            <Button cssClass="btn btn-success"
+                                    text="Add post"
+                                    action={this.props.openAddPostModal}/>
+                            <Button cssClass="btn btn-info"
+                                    localPosts={localPosts}
+                                    text="Load posts"
+                                    action={this.props.getLocalPosts}/>
+                            <Button cssClass="btn btn-info"
+                                    localPosts={!localPosts}
+                                    text="Load posts"
+                                    action={this.props.getPosts}/>
                         </div>
                     </div>
                     <div className="posts-container row">
@@ -45,6 +54,7 @@ function mapStateToProps(state) {
 
     return {
         posts: state.posts
+
     }
 }
 
@@ -52,6 +62,7 @@ function matchDispatchToProps(dispatch) {
     return bindActionCreators({
             getPosts: getPosts,
             getLocalPosts: getLocalPosts,
+            openAddPostModal: openAddPostModal,
             deletePost: deletePost
         },
         dispatch

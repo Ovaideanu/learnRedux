@@ -38,3 +38,19 @@ export const deletePost = (postId) => {
 
     return action;
 };
+
+export const openAddPostModal = () => {
+    const action = {
+        type: 'OPEN_MODAL',
+        payload: {
+            'modal': 'addPostModal',
+            'modalState': true
+        }
+    };
+
+    return action;
+};
+
+export const addPost = () => {
+
+};
